@@ -4,4 +4,5 @@ test:
 	coverage html
 
 devdependencies:
-	pip install --user coverage pytest
+	pip install coverage pytest
+	python setup.py develop
