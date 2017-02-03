@@ -1,4 +1,5 @@
 from cluster import msg
+import pytest
 
 def test_message_parsing():
     sample = msg.Message(42, 424242, "42.43.44.45", "42:43:44:45:46:47", 2)
@@ -11,3 +12,12 @@ def test_ip_conversion():
 def test_mac_conversion():
     for i in ("00:00:00:00:00:00", "ff:ff:ff:ff:ff:ff", "ab:cd:ef:12:34:56"):
         assert msg.bytes_to_mac(msg.mac_to_bytes(i)) == i
+
+def test_bad_magic():
+    sample = msg.Message(42, 424242, "42.43.44.45", "42:43:44:45:46:47", 2)
+    raw = list(msg.unparse(sample))
+    raw[0] = 42
+    raw = bytes(raw)
+
+    with pytest.raises(msg.BadMagic):
+        msg.parse(raw)

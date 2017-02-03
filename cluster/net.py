@@ -14,18 +14,21 @@ class Listener:
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.sock.bind((config.bcast, PORT))
         self.sock.setblocking(0)
+        self.running = False
 
     def listen(self, callback):
         """
         Start the listener thread. Parsed messages will be sent to the given
         callback function.
         """
-        threading.Thread(target=self._listen, args=(callback,)).start()
+        self.thread = threading.Thread(target=self._listen, args=(callback,))
+        self.thread.start()
+        self.running = True
 
     def _listen(self, handler):
         buf = b""
-        while True:
-            result = select.select([self.sock], [], [])
+        while self.running:
+            select.select([self.sock], [], [])
             data = self.sock.recv(32)
             buf += data
             while len(buf) >= 32 and msg.MAGIC in buf:
