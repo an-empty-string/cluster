@@ -1,0 +1,6 @@
+id: 1
+bcast: 172.16.0.255
+services:
+    - id: 1
+      dev: eth0
+      comment: routing
