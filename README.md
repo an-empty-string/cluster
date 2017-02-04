@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/lessbroken/cluster.svg?branch=master)](https://travis-ci.org/lessbroken/cluster)
 [![Code Climate](https://codeclimate.com/github/lessbroken/cluster/badges/gpa.svg)](https://codeclimate.com/github/lessbroken/cluster)
+[![Test Coverage](https://codeclimate.com/github/lessbroken/cluster/badges/coverage.svg)](https://codeclimate.com/github/lessbroken/cluster/coverage)
 
 Lessbroken Cluster is a clustering engine specifically designed to handle
 failover of dynamic IPs.
