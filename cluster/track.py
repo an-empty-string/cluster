@@ -22,6 +22,7 @@ class NetState:
         self.our_id = our_id
         self.services = collections.defaultdict(ServiceState)
         self.who_supports = collections.defaultdict(lambda: collections.defaultdict(int))
+        self.running = set()
 
     def tick(self):
         for k, v in self.services.items():
